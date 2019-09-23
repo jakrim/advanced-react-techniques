@@ -15,6 +15,16 @@ function appReducer(state, action) {
         }
       ];
     }
+    case 'change': {
+      return state.map(item =>
+        item.id === action.payload.id
+          ? {
+              ...item,
+              text: action.payload.value
+            }
+          : item
+      );
+    }
     case 'delete': {
       return state.filter(item => item.id !== action.payload);
     }
@@ -91,7 +101,13 @@ function TodoItem({ id, completed, text }) {
         checked={completed}
         onChange={() => dispatch({ type: 'completed', payload: id })}
       ></input>
-      <input type='text' defaultValue={text}></input>
+      <input
+        type='text'
+        defaultValue={text}
+        onChange={({ target: { value } }) =>
+          dispatch({ type: 'change', payload: { id, value } })
+        }
+      ></input>
       <button onClick={() => dispatch({ type: 'delete', payload: id })}>
         Delete
       </button>
