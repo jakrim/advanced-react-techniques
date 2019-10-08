@@ -1,3 +1,6 @@
+A todo list using local state, and advanced react hooks such as useReducer, useContext, useEffect, useRef. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
